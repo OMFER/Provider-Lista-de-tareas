@@ -14,7 +14,7 @@ class Tarea{
 
   factory Tarea.fromJson(Map<String, dynamic> json) {
     return Tarea(
-      id: json['id'] ?? '0',
+      id: json['id'] ?? 0,
       titulo: json['titulo'] ?? '',
       descripcion: json['descripcion'] ?? '',
       completada: json['completada'] ?? false,

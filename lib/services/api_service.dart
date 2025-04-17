@@ -40,9 +40,9 @@ class ApiService {
       Uri.parse('$baseUrl/tareas/${tarea.id}'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
-        'title': tarea.titulo,
+        'titulo': tarea.titulo,
         'descripcion': tarea.descripcion,
-        'completed': tarea.completada
+        'completada': tarea.completada
       }),
     );
     if (response.statusCode == 200) {

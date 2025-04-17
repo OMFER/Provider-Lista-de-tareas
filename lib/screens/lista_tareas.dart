@@ -10,35 +10,39 @@ class ListaTareas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tareasPorv = Provider.of<TareaProvider>(context);
+    final tareasProv = Provider.of<TareaProvider>(context);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      tareasProv.cargarTareas();
+    });
+
     return Scaffold(
       appBar: AppBar(
         title:const Text('Lista de tareas'),
         actions: [
           IconButton(
-            icon: Icon(Icons.add),
+            icon:const Icon(Icons.add),
             onPressed: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => AgregarTarea()),
+                MaterialPageRoute(builder: (context) =>const AgregarTarea()),
               );
             },
           ),
         ],
       ),
-      body: FutureBuilder(
-        future: tareasPorv.cargarTareas(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error al cargar las tareas: ${snapshot.error}'));
-          } else {
-            return ListView.builder(
-              itemCount: tareasPorv.tareas.length,
-              itemBuilder: (context, index) => TareaItem(tareasPorv.tareas[index]),
-            );
+      body: Consumer<TareaProvider>(
+        builder: (context, tareasProv, child) {
+          if (tareasProv.tareas.isEmpty) {
+            return const Center(child: Text('No hay tareas'));
           }
-        }
+          return RefreshIndicator(
+            onRefresh: tareasProv.cargarTareas,
+            child: ListView.builder(
+              itemCount: tareasProv.tareas.length,
+              itemBuilder: (context, index) => TareaItem(tareasProv.tareas[index]),
+            )
+          );
+        },
       ),
     );
   }

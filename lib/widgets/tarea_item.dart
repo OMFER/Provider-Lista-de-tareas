@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lista_de_tareas/models/model_tarea.dart';
+import 'package:lista_de_tareas/widgets/tarea_form.dart';
 import 'package:provider/provider.dart';
 import 'package:lista_de_tareas/providers/tarea_prov.dart';
 
@@ -31,7 +32,23 @@ class TareaItem extends StatelessWidget {
           },
         ),
         onTap: () {
-          // Aquí puedes agregar la navegación para editar
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => Scaffold(
+                appBar: AppBar(title: Text('Editar Tarea')),
+                body: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TareaForm(
+                    initTarea: tarea,
+                    onSubmit: (updatedTarea) async {
+                      await tareaProv.actualizarTarea(updatedTarea);
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+              ),
+            )
+          );
         },
       ),
     );

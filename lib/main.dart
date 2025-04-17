@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'core/config.dart';
 import 'providers/tarea_prov.dart';
 import 'services/api_service.dart';
 import 'screens/lista_tareas.dart';
@@ -17,7 +18,7 @@ class MainApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => TareaProvider(
-            apiService: ApiService(baseUrl: 'http://10.0.2.2:3000'),
+            apiService: ApiService(baseUrl: Config.baseUrl),
             ),
           ),
         ],

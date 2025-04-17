@@ -11,20 +11,17 @@ let tareas = [
     { id: 1, titulo: "Tarea de ejemplo", descripcion: "Esta es una tarea de ejemplo", completada: false }
   ];
 
-const router = express.Router();
-app.use(router);
-
 app.get('/tareas', (req, res) => {
     res.json(tareas);
 });
 
 app.post('/tareas', (req, res) => {
     const nuevaTarea = {
-        id: 5,
+        id: tareas.length > 0 ? Math.max(...tareas.map(t => t.id)) + 1 : 1,
         titulo: req.body.titulo || '',
         descripcion: req.body.descripcion || '',
         completada: req.body.completada || false
-      };
+    };
     tareas.push(nuevaTarea);
     //res.json(tareas);
     res.status(201).json(nuevaTarea);
@@ -37,14 +34,21 @@ app.put('/tareas/:id', (req, res) => {
     if (index === -1) {
       return res.status(404).json({ error: 'Tarea no encontrada' });
     }
+
+    const updatedTarea = {
+        id: id,
+        titulo: req.body.titulo || tareas[index].titulo,
+        descripcion: req.body.descripcion || tareas[index].descripcion,
+        completada: req.body.completada !== undefined ? req.body.completada : tareas[index].completada
+    };
   
-    tareas[index] = { ...tareas[index], ...req.body };
-    res.json(tareas[index]);
+    tareas[index] = updatedTarea;
+     res.json(updatedTarea);
   });
 
 app.delete('/tareas/:id', (req, res) => {
-    const id = req.params.id;
-    tareas = tareas.filter(t => t.id !== id);
+  const id = req.params.id;
+  tareas = tareas.filter(t => t.id !== id);
   res.status(204).send();
 });
 
