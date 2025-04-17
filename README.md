@@ -71,4 +71,4 @@ Para ejecutar las pruebas unitarias y verificar la cobertura del código:
 
 1. **Ejecuta todas las pruebas**:
    ```bash
-   flutter test
+   flutter test --coverage
