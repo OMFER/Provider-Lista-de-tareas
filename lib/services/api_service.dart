@@ -21,8 +21,13 @@ class ApiService {
     final response = await http.post(
       Uri.parse('$baseUrl/tareas'),
       headers: {'Content-Type': 'application/json'},
-      body: json.encode(tarea.toJson()),
+      body: json.encode({
+        'titulo': tarea.titulo,
+        'descripcion': tarea.descripcion,
+        'completada': tarea.completada
+      }),
     );
+    print('Respuesta del backend: ${response.body}');
     if (response.statusCode == 201) {
       return Tarea.fromJson(json.decode(response.body));
     } else {
@@ -34,7 +39,11 @@ class ApiService {
     final response = await http.put(
       Uri.parse('$baseUrl/tareas/${tarea.id}'),
       headers: {'Content-Type': 'application/json'},
-      body: json.encode(tarea.toJson()),
+      body: json.encode({
+        'title': tarea.titulo,
+        'descripcion': tarea.descripcion,
+        'completed': tarea.completada
+      }),
     );
     if (response.statusCode == 200) {
       return Tarea.fromJson(json.decode(response.body));
@@ -45,7 +54,7 @@ class ApiService {
 
   Future<void> deleteTarea(int id) async {
     final response = await http.delete(Uri.parse('$baseUrl/tareas/$id'));
-    if (response.statusCode != 204) {
+    if (response.statusCode != 200) {
       throw Exception('Error al eliminar la tarea');
     }
   }

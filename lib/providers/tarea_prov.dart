@@ -17,6 +17,7 @@ class TareaProvider with ChangeNotifier {
 
     Future<Tarea> crearTarea(Tarea tarea) async {
       final nuevaTarea = await apiService.createTarea(tarea);
+      print('Tareas después de agregar: $_tareas');
       _tareas.add(nuevaTarea);
       notifyListeners();
       return nuevaTarea;

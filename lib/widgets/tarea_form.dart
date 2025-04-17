@@ -13,8 +13,8 @@ class TareaForm extends StatefulWidget {
 
 class _TareaFormState extends State<TareaForm> {
   final _formKey = GlobalKey<FormState>();
-  late String _titulo;
-  late String _descripcion;
+  late String _titulo = '';
+  late String _descripcion = '';
 
   @override
   void initState() {
@@ -28,8 +28,9 @@ class _TareaFormState extends State<TareaForm> {
   void _submit() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+      print('Enviando tarea - Título: $_titulo, Descripción: $_descripcion');
       final tarea = Tarea(
-        id: widget.initTarea?.id ?? "0",
+        id: widget.initTarea?.id ?? 0,
         titulo: _titulo,
         descripcion: _descripcion,
         completada: widget.initTarea?.completada ?? false,

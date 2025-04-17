@@ -1,0 +1,32 @@
+{
+  "name": "provider-lista-de-tareas",
+  "version": "1.0.0",
+  "description": "backend de la app",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OMFER/Provider-Lista-de-tareas.git"
+  },
+  "keywords": [
+    "provider",
+    "flutter",
+    "node"
+  ],
+  "author": "Fernando",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OMFER/Provider-Lista-de-tareas/issues"
+  },
+  "homepage": "https://github.com/OMFER/Provider-Lista-de-tareas#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}

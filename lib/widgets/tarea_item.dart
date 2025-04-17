@@ -16,13 +16,24 @@ class TareaItem extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.all(8.0),
       child: ListTile(
-        title: Text("Titulo"),
-        subtitle: Text("Descripción"),
+        title: Text(tarea.titulo),
+        subtitle: Text(tarea.descripcion),
         trailing: Checkbox(
-          value: completada,
-          onChanged: (value) => tareaProv.actualizarTarea(tarea),
+          value: tarea.completada,
+          onChanged: (value) {
+            final updatedTarea = Tarea(
+              id: tarea.id,
+              titulo: tarea.titulo,
+              descripcion: tarea.descripcion,
+              completada: value ?? false,
+            );
+            tareaProv.actualizarTarea(updatedTarea);
+          },
         ),
-      )
+        onTap: () {
+          // Aquí puedes agregar la navegación para editar
+        },
+      ),
     );
   }
 }

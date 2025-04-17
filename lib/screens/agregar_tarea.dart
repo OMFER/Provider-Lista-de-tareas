@@ -16,8 +16,9 @@ class AgregarTarea extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: TareaForm(
-            onSubmit: (tarea){
-              tareaProv.crearTarea(tarea);
+            onSubmit: (tarea) async {
+              await tareaProv.crearTarea(tarea);
+              await tareaProv.cargarTareas();
               Navigator.pop(context);
             },
           ),

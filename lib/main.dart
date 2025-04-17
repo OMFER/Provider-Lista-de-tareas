@@ -17,15 +17,15 @@ class MainApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => TareaProvider(
-            apiService: ApiService(baseUrl: 'https://jsonplaceholder.typicode.com'),
+            apiService: ApiService(baseUrl: 'http://10.0.2.2:3000'),
             ),
           ),
         ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Provider-Lista-de-tareas',
+        title: 'Lista de Tareas',
         theme: ThemeData.dark(),
-        home: ListaTareas(),
+        home:const ListaTareas(),
       )
     );
   }
