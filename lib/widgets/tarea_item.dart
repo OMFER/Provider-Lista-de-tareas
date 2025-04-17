@@ -6,9 +6,8 @@ import 'package:lista_de_tareas/providers/tarea_prov.dart';
 
 class TareaItem extends StatelessWidget {
   final Tarea tarea;
-  final bool completada;
 
-  const TareaItem(this.tarea, {this.completada = false, Key? key}) : super(key: key);
+  const TareaItem(this.tarea, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,7 @@ class TareaItem extends StatelessWidget {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => Scaffold(
-                appBar: AppBar(title: Text('Editar Tarea')),
+                appBar: AppBar(title:const Text('Editar Tarea')),
                 body: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: TareaForm(

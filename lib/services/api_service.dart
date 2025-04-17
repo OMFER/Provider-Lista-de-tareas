@@ -54,7 +54,7 @@ class ApiService {
 
   Future<void> deleteTarea(int id) async {
     final response = await http.delete(Uri.parse('$baseUrl/tareas/$id'));
-    if (response.statusCode != 200) {
+    if (response.statusCode != 204) {
       throw Exception('Error al eliminar la tarea');
     }
   }

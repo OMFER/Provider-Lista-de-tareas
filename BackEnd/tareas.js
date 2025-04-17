@@ -46,10 +46,16 @@ app.put('/tareas/:id', (req, res) => {
      res.json(updatedTarea);
   });
 
-app.delete('/tareas/:id', (req, res) => {
-  const id = req.params.id;
-  tareas = tareas.filter(t => t.id !== id);
-  res.status(204).send();
+  app.delete('/tareas/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const initialLength = tareas.length;
+    tareas = tareas.filter(t => t.id !== id);
+    
+    if (tareas.length === initialLength) {
+        return res.status(404).json({ error: 'Tarea no encontrada' });
+    }
+    
+    res.status(204).send();
 });
 
 app.listen(3000, () => {
