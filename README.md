@@ -63,3 +63,12 @@ Todos los cambios se guardan a través del servidor que corre en el puerto 3000.
 ---
 
 ¡Listo! Ya podés usar tu app de tareas 🎉
+
+
+## 🧪 Pruebas y Cobertura de Código
+
+Para ejecutar las pruebas unitarias y verificar la cobertura del código:
+
+1. **Ejecuta todas las pruebas**:
+   ```bash
+   flutter test

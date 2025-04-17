@@ -10,6 +10,11 @@ class TareaProvider with ChangeNotifier {
 
   List<Tarea> get tareas => _tareas;
 
+  set tareas(List<Tarea> nuevasTareas) {
+    _tareas = nuevasTareas;
+    notifyListeners();
+  }
+
   Future<void> cargarTareas() async {
     _tareas = await apiService.getTareas();
     notifyListeners();
