@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:lista_de_tareas/models/model_tarea.dart';
 import 'package:provider/provider.dart';
 import '../providers/tarea_prov.dart';
-import '../widgets/tarea.dart';
+import '../widgets/tarea_item.dart';
 import 'agregar_tarea.dart';
 
 class ListaTareas extends StatelessWidget {
+  const ListaTareas({super.key});
+
   @override
   Widget build(BuildContext context) {
     final tareasPorv = Provider.of<TareaProvider>(context);
@@ -32,10 +35,7 @@ class ListaTareas extends StatelessWidget {
           } else {
             return ListView.builder(
               itemCount: tareasPorv.tareas.length,
-              itemBuilder: (context, index) {
-                final tarea = tareasPorv.tareas[index];
-                return Tarea(tarea: tarea);
-              },
+              itemBuilder: (context, index) => TareaItem(tareasPorv.tareas[index]),
             );
           }
         }
